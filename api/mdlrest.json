@@ -1,0 +1,35 @@
+{
+  "id": "mdlrest",
+  "cmd": null,
+  "cpus": 0.8,
+  "mem": 1024,
+  "disk": 0,
+  "instances": 5,
+  "container": {
+    "docker": {
+      "image": "localhost:31800/mdlrest",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "hostPort": 0, "containerPort": 5000, "servicePort": 10000 }
+      ],
+      "forcePullImage": false
+    },
+    "type": "DOCKER"
+  },
+  "healthChecks": [
+    {
+      "protocol": "HTTP",
+      "path": "/hello",
+      "portIndex": 0,
+      "gracePeriodSeconds": 300,
+      "intervalSeconds": 60,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 3
+    }
+  ],
+  "labels":{
+      "HAPROXY_GROUP":"external",
+      "HAPROXY_0_VHOST":"acs-griffin-agents.westus.cloudapp.azure.com",
+      "HAPROXY_0_MODE":"http"
+  }
+}
