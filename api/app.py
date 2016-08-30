@@ -6,11 +6,16 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    return 'Hello, Griffin'
+    return make_response('OK', 200)
 
 
 @app.route('/start/<string:app_name>', methods=['POST'])
 def start(app_name):
+    try:
+        data = open('{0}.json'.format(app_name), 'rb').read()
+    except:
+        return make_response('cannot start application [{0}] which is not defined.'.format(app_name), 404)
+
     # The resource URL for the marathon action.
     marathon_url = 'http://localhost/marathon/v2/apps'
 
@@ -20,7 +25,7 @@ def start(app_name):
     }
 
     print('POST {0}'.format(marathon_url))
-    response = requests.post(url=marathon_url, headers=headers, data=open('{0}.json'.format(app_name), 'rb'))
+    response = requests.post(url=marathon_url, headers=headers, data=data)
     return make_response(response.text, response.status_code)
 
 
