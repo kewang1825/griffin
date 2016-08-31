@@ -6,8 +6,8 @@ void Main()
 	
 	// Start new application
     client.Stop();
-    System.Threading.Thread.Sleep(1000);
-    client.Start("1");
+//    System.Threading.Thread.Sleep(1000);
+//    client.Start("1");
 	
 	// Update the application
 //    client.Upgrade("2");
@@ -40,7 +40,7 @@ class GriffinClient
 	
     public void Stop()
     {
-        string url = Griffin_Server_URL + "stop/" + app;
+        string url = Griffin_Server_URL + "stop/" + app + "?force=true";
         string response;
         GriffinClient.TryMakeRequest(url, POST, out response);
     }
