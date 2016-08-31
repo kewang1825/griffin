@@ -7,7 +7,7 @@
   "instances": 5,
   "container": {
     "docker": {
-      "image": "localhost:31800/mdlrest",
+      "image": "localhost:31800/mdlrest:#app_tag",
       "network": "BRIDGE",
       "portMappings": [
         { "hostPort": 0, "containerPort": 5000, "servicePort": 10000 }

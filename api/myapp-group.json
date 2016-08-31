@@ -13,12 +13,12 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/myapp:dev",
+              "image": "localhost:31800/myapp:#app_tag",
               "network": "BRIDGE",
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10001 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
@@ -48,12 +48,12 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/myapp:dev",
+              "image": "localhost:31800/myapp:#app_tag",
               "network": "BRIDGE",
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10002 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
@@ -88,12 +88,12 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/myapp:dev",
+              "image": "localhost:31800/myapp:#app_tag",
               "network": "BRIDGE",
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10003 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
@@ -123,12 +123,12 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/myapp:dev",
+              "image": "localhost:31800/myapp:#app_tag",
               "network": "BRIDGE",
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10004 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
@@ -163,12 +163,12 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/myapp:dev",
+              "image": "localhost:31800/myapp:#app_tag",
               "network": "BRIDGE",
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10005 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
@@ -198,12 +198,12 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/myapp:dev",
+              "image": "localhost:31800/myapp:#app_tag",
               "network": "BRIDGE",
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10006 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
@@ -238,12 +238,12 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/myapp:dev",
+              "image": "localhost:31800/myapp:#app_tag",
               "network": "BRIDGE",
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10007 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
@@ -273,12 +273,12 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/myapp:dev",
+              "image": "localhost:31800/myapp:#app_tag",
               "network": "BRIDGE",
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10008 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
