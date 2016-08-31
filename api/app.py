@@ -1,4 +1,4 @@
-from flask import Flask, make_response
+from flask import Flask, make_response, request
 import requests
 
 app = Flask(__name__)
@@ -9,7 +9,7 @@ def hello():
     return make_response('OK', 200)
 
 
-@app.route('/start/<string:app_name>', methods=['POST'])
+@app.route('/start/<string:app_name>', methods=['POST','PUT'])
 def start(app_name):
     try:
         data = open('{0}.json'.format(app_name), 'rb').read()
@@ -27,8 +27,17 @@ def start(app_name):
         'Content-Type': 'application/json'
     }
 
-    print('POST {0}'.format(marathon_url))
-    response = requests.post(url=marathon_url, headers=headers, data=data)
+    if request.method == 'PUT':
+        marathon_url += '/{0}'.format(app_name)
+        data = data.replace('"forcePullImage": false', '"forcePullImage": true')
+
+    print('{0} {1}'.format(request.method, marathon_url))
+
+    if request.method == 'POST':
+        response = requests.post(url=marathon_url, headers=headers, data=data)
+    else:
+        response = requests.put(url=marathon_url, headers=headers, data=data)
+
     return make_response(response.text, response.status_code)
 
 

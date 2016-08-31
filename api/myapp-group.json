@@ -18,7 +18,7 @@
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10001 }
               ],
-              "forcePullImage": true
+              "forcePullImage": false
             },
             "type": "DOCKER"
           },
@@ -53,7 +53,7 @@
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10002 }
               ],
-              "forcePullImage": true
+              "forcePullImage": false
             },
             "type": "DOCKER"
           },
@@ -93,7 +93,7 @@
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10003 }
               ],
-              "forcePullImage": true
+              "forcePullImage": false
             },
             "type": "DOCKER"
           },
@@ -128,7 +128,7 @@
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10004 }
               ],
-              "forcePullImage": true
+              "forcePullImage": false
             },
             "type": "DOCKER"
           },
@@ -168,7 +168,7 @@
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10005 }
               ],
-              "forcePullImage": true
+              "forcePullImage": false
             },
             "type": "DOCKER"
           },
@@ -203,7 +203,7 @@
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10006 }
               ],
-              "forcePullImage": true
+              "forcePullImage": false
             },
             "type": "DOCKER"
           },
@@ -243,7 +243,7 @@
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10007 }
               ],
-              "forcePullImage": true
+              "forcePullImage": false
             },
             "type": "DOCKER"
           },
@@ -278,7 +278,7 @@
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10008 }
               ],
-              "forcePullImage": true
+              "forcePullImage": false
             },
             "type": "DOCKER"
           },
