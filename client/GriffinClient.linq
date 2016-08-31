@@ -2,17 +2,16 @@
 
 void Main()
 {
-//    var client = new GriffinClient("myapp-group");
     var client = new GriffinClient("mdlrest");
-    client.Start("latest"); // mdlrest:latest
-	
-	// Start new application
+//    var client = new GriffinClient("myapp-group");
+
 //    client.Stop();
 //    System.Threading.Thread.Sleep(1000);
-//    client.Start("1"); //myapp:1
-	
-	// Update the application
-//    client.Upgrade("2"); //myapp:2
+
+    client.Start("latest"); // mdlrest:latest
+
+//    client.Start("1");     //myapp:1
+//    client.Upgrade("2");   //myapp:2
 //    client.Upgrade("bad"); //myapp:bad
 }
 
