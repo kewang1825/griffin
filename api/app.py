@@ -52,7 +52,7 @@ def stop(app_name):
         marathon_url = 'http://localhost/marathon/v2/apps/{0}'.format(app_name)
 
     print('DELETE {0}'.format(marathon_url))
-    response = requests.delete(url=marathon_url)
+    response = requests.delete(url=marathon_url, params=request.args)
     return make_response(response.text, response.status_code)
 
 
