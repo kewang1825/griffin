@@ -1,11 +1,11 @@
 {
-  "id": "/mileiq-group",
+  "id": "/myapp-group",
   "groups": [
     {
-      "id": "/mileiq-group/mdlrest1",
+      "id": "/myapp-group/scale-unit-1",
       "apps": [
         {
-          "id": "mdlrest-db1",
+          "id": "myapp-db1",
           "cmd": null,
           "cpus": 0.5,
           "mem": 256,
@@ -13,19 +13,19 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/mdlrest",
+              "image": "localhost:31800/myapp:dev",
               "network": "BRIDGE",
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10001 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
           "healthChecks": [
             {
               "protocol": "HTTP",
-              "path": "/hello",
+              "path": "/health",
               "portIndex": 0,
               "gracePeriodSeconds": 300,
               "intervalSeconds": 60,
@@ -40,7 +40,7 @@
           }
         },
         {
-          "id": "mdlrest-db2",
+          "id": "myapp-db2",
           "cmd": null,
           "cpus": 0.5,
           "mem": 256,
@@ -48,19 +48,19 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/mdlrest",
+              "image": "localhost:31800/myapp:dev",
               "network": "BRIDGE",
               "portMappings": [
                 { "hostPort": 0, "containerPort": 5000, "servicePort": 10002 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
           "healthChecks": [
             {
               "protocol": "HTTP",
-              "path": "/hello",
+              "path": "/health",
               "portIndex": 0,
               "gracePeriodSeconds": 300,
               "intervalSeconds": 60,
@@ -76,11 +76,11 @@
         }
       ]
     },{
-      "id": "/mileiq-group/mdlrest2",
-      "dependencies": ["/mileiq-group/mdlrest1"],
+      "id": "/myapp-group/scale-unit-2",
+      "dependencies": ["/myapp-group/scale-unit-1"],
       "apps": [
         {
-          "id": "mdlrest-db1",
+          "id": "myapp-db1",
           "cmd": null,
           "cpus": 0.5,
           "mem": 256,
@@ -88,19 +88,19 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/mdlrest",
+              "image": "localhost:31800/myapp:dev",
               "network": "BRIDGE",
               "portMappings": [
-                { "hostPort": 0, "containerPort": 5000, "servicePort": 10001 }
+                { "hostPort": 0, "containerPort": 5000, "servicePort": 10003 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
           "healthChecks": [
             {
               "protocol": "HTTP",
-              "path": "/hello",
+              "path": "/health",
               "portIndex": 0,
               "gracePeriodSeconds": 300,
               "intervalSeconds": 60,
@@ -115,7 +115,7 @@
           }
         },
         {
-          "id": "mdlrest-db2",
+          "id": "myapp-db2",
           "cmd": null,
           "cpus": 0.5,
           "mem": 256,
@@ -123,19 +123,19 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/mdlrest",
+              "image": "localhost:31800/myapp:dev",
               "network": "BRIDGE",
               "portMappings": [
-                { "hostPort": 0, "containerPort": 5000, "servicePort": 10002 }
+                { "hostPort": 0, "containerPort": 5000, "servicePort": 10004 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
           "healthChecks": [
             {
               "protocol": "HTTP",
-              "path": "/hello",
+              "path": "/health",
               "portIndex": 0,
               "gracePeriodSeconds": 300,
               "intervalSeconds": 60,
@@ -151,11 +151,11 @@
         }
       ]
     },{
-      "id": "/mileiq-group/mdlrest3",
-      "dependencies": ["/mileiq-group/mdlrest2"],
+      "id": "/myapp-group/scale-unit-3",
+      "dependencies": ["/myapp-group/scale-unit-2"],
       "apps": [
         {
-          "id": "mdlrest-db1",
+          "id": "myapp-db1",
           "cmd": null,
           "cpus": 0.5,
           "mem": 256,
@@ -163,19 +163,19 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/mdlrest",
+              "image": "localhost:31800/myapp:dev",
               "network": "BRIDGE",
               "portMappings": [
-                { "hostPort": 0, "containerPort": 5000, "servicePort": 10001 }
+                { "hostPort": 0, "containerPort": 5000, "servicePort": 10005 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
           "healthChecks": [
             {
               "protocol": "HTTP",
-              "path": "/hello",
+              "path": "/health",
               "portIndex": 0,
               "gracePeriodSeconds": 300,
               "intervalSeconds": 60,
@@ -190,7 +190,7 @@
           }
         },
         {
-          "id": "mdlrest-db2",
+          "id": "myapp-db2",
           "cmd": null,
           "cpus": 0.5,
           "mem": 256,
@@ -198,19 +198,19 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/mdlrest",
+              "image": "localhost:31800/myapp:dev",
               "network": "BRIDGE",
               "portMappings": [
-                { "hostPort": 0, "containerPort": 5000, "servicePort": 10002 }
+                { "hostPort": 0, "containerPort": 5000, "servicePort": 10006 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
           "healthChecks": [
             {
               "protocol": "HTTP",
-              "path": "/hello",
+              "path": "/health",
               "portIndex": 0,
               "gracePeriodSeconds": 300,
               "intervalSeconds": 60,
@@ -226,11 +226,11 @@
         }
       ]
     },{
-      "id": "/mileiq-group/mdlrest4",
-      "dependencies": ["/mileiq-group/mdlrest3"],
+      "id": "/myapp-group/scale-unit-4",
+      "dependencies": ["/myapp-group/scale-unit-3"],
       "apps": [
         {
-          "id": "mdlrest-db1",
+          "id": "myapp-db1",
           "cmd": null,
           "cpus": 0.5,
           "mem": 256,
@@ -238,19 +238,19 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/mdlrest",
+              "image": "localhost:31800/myapp:dev",
               "network": "BRIDGE",
               "portMappings": [
-                { "hostPort": 0, "containerPort": 5000, "servicePort": 10001 }
+                { "hostPort": 0, "containerPort": 5000, "servicePort": 10007 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
           "healthChecks": [
             {
               "protocol": "HTTP",
-              "path": "/hello",
+              "path": "/health",
               "portIndex": 0,
               "gracePeriodSeconds": 300,
               "intervalSeconds": 60,
@@ -265,7 +265,7 @@
           }
         },
         {
-          "id": "mdlrest-db2",
+          "id": "myapp-db2",
           "cmd": null,
           "cpus": 0.5,
           "mem": 256,
@@ -273,19 +273,19 @@
           "instances": 1,
           "container": {
             "docker": {
-              "image": "localhost:31800/mdlrest",
+              "image": "localhost:31800/myapp:dev",
               "network": "BRIDGE",
               "portMappings": [
-                { "hostPort": 0, "containerPort": 5000, "servicePort": 10002 }
+                { "hostPort": 0, "containerPort": 5000, "servicePort": 10008 }
               ],
-              "forcePullImage": false
+              "forcePullImage": true
             },
             "type": "DOCKER"
           },
           "healthChecks": [
             {
               "protocol": "HTTP",
-              "path": "/hello",
+              "path": "/health",
               "portIndex": 0,
               "gracePeriodSeconds": 300,
               "intervalSeconds": 60,

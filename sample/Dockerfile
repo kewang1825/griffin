@@ -3,7 +3,7 @@ RUN apt-get update
 RUN apt-get install -y git libpq-dev
 
 RUN mkdir -p /usr/src/app
-COPY api/ /usr/src/app/
+COPY ./ /usr/src/app/
 
 WORKDIR /usr/src/app/ 
 
