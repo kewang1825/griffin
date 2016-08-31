@@ -7,10 +7,11 @@ void Main()
 	// Start new application
     client.Stop();
     System.Threading.Thread.Sleep(1000);
-    client.Start();
+    client.Start("1");
 	
 	// Update the application
-    client.Start(true);
+//    client.Upgrade("2");
+//    client.Upgrade("bad");
 }
 
 // Define other methods and classes here
@@ -27,18 +28,28 @@ class GriffinClient
         this.app = app;
     }
     
-    public void Start(bool upgrade = false)
-    {
-        string url = Griffin_Server_URL + "start/" + app;
-        string response;
-        GriffinClient.TryMakeRequest(url, upgrade ? PUT : POST, out response);
-    }
-    
+	public void Start(string ver)
+	{
+		this.Start(ver, false);
+	}
+	
+	public void Upgrade(string ver)
+	{
+		this.Start(ver, true);
+	}
+	
     public void Stop()
     {
         string url = Griffin_Server_URL + "stop/" + app;
         string response;
         GriffinClient.TryMakeRequest(url, POST, out response);
+    }
+    
+    private void Start(string ver, bool upgrade)
+    {
+        string url = Griffin_Server_URL + "start/" + app + "/" + ver;
+        string response;
+        GriffinClient.TryMakeRequest(url, upgrade ? PUT : POST, out response);
     }
     
     private static bool TryMakeRequest(string url, string method, out string responseStr)
