@@ -17,7 +17,10 @@ def start(app_name):
         return make_response('cannot start application [{0}] which is not defined.'.format(app_name), 404)
 
     # The resource URL for the marathon action.
-    marathon_url = 'http://localhost/marathon/v2/apps'
+    if app_name[-6:] == "-group":
+        marathon_url = 'http://localhost/marathon/v2/groups'
+    else:
+        marathon_url = 'http://localhost/marathon/v2/apps'
 
     # Set request headers.
     headers = {
@@ -32,7 +35,10 @@ def start(app_name):
 @app.route('/stop/<string:app_name>', methods=['POST'])
 def stop(app_name):
     # The resource URL for the marathon action.
-    marathon_url = 'http://localhost/marathon/v2/apps/{0}'.format(app_name)
+    if app_name[-6:] == "-group":
+        marathon_url = 'http://localhost/marathon/v2/groups/{0}'.format(app_name)
+    else:
+        marathon_url = 'http://localhost/marathon/v2/apps/{0}'.format(app_name)
 
     print('DELETE {0}'.format(marathon_url))
     response = requests.delete(url=marathon_url)
