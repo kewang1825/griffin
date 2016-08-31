@@ -9,10 +9,10 @@ def hello():
     return make_response('OK', 200)
 
 
-@app.route('/start/<string:app_name>', methods=['POST','PUT'])
-def start(app_name):
+@app.route('/start/<string:app_name>/<string:app_tag>', methods=['POST', 'PUT'])
+def start(app_name, app_tag):
     try:
-        data = open('{0}.json'.format(app_name), 'rb').read()
+        data = open('{0}.json'.format(app_name), 'r').read()
     except:
         return make_response('cannot start application [{0}] which is not defined.'.format(app_name), 404)
 
@@ -22,21 +22,23 @@ def start(app_name):
     else:
         marathon_url = 'http://localhost/marathon/v2/apps'
 
+    if request.method == 'PUT':
+        marathon_url += '/{0}'.format(app_name)
+
+    print('{0} {1}'.format(request.method, marathon_url))
+
     # Set request headers.
     headers = {
         'Content-Type': 'application/json'
     }
 
-    if request.method == 'PUT':
-        marathon_url += '/{0}'.format(app_name)
-        data = data.replace('"forcePullImage": false', '"forcePullImage": true')
-
-    print('{0} {1}'.format(request.method, marathon_url))
+    # Set request data.
+    data = data.replace('#app_tag', app_tag)
 
     if request.method == 'POST':
-        response = requests.post(url=marathon_url, headers=headers, data=data)
+        response = requests.post(url=marathon_url, headers=headers, data=data, params=request.args)
     else:
-        response = requests.put(url=marathon_url, headers=headers, data=data)
+        response = requests.put(url=marathon_url, headers=headers, data=data, params=request.args)
 
     return make_response(response.text, response.status_code)
 
