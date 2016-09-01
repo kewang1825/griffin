@@ -1,4 +1,5 @@
 from flask import Flask, make_response, request
+from scale import create_groups
 import requests
 
 app = Flask(__name__)
@@ -9,18 +10,23 @@ def hello():
     return make_response('OK', 200)
 
 
-@app.route('/start/<string:app_name>/<string:app_tag>', methods=['POST', 'PUT'])
-def start(app_name, app_tag):
+@app.route('/start/<string:app_name>/<string:app_tag>/<int:app_scale>', methods=['POST', 'PUT'])
+def start(app_name, app_tag, app_scale):
     try:
-        data = open('{0}.json'.format(app_name), 'r').read()
+        data = open('./config/{0}.json'.format(app_name), 'r').read()
     except:
         return make_response('cannot start application [{0}] which is not defined.'.format(app_name), 404)
+
+    # Set request data.
+    data = data.replace('#app_tag', app_tag)
 
     # The resource URL for the marathon action.
     if app_name[-6:] == "-group":
         marathon_url = 'http://localhost/marathon/v2/groups'
+        data = create_groups(app_name, data, app_scale)
     else:
         marathon_url = 'http://localhost/marathon/v2/apps'
+        data = data.replace('#app_scale', str(app_scale))
 
     if request.method == 'PUT':
         marathon_url += '/{0}'.format(app_name)
@@ -31,9 +37,6 @@ def start(app_name, app_tag):
     headers = {
         'Content-Type': 'application/json'
     }
-
-    # Set request data.
-    data = data.replace('#app_tag', app_tag)
 
     if request.method == 'POST':
         response = requests.post(url=marathon_url, headers=headers, data=data, params=request.args)

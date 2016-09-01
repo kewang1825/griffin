@@ -4,7 +4,7 @@
   "cpus": 0.8,
   "mem": 1024,
   "disk": 0,
-  "instances": 5,
+  "instances": #app_scale,
   "container": {
     "docker": {
       "image": "localhost:31800/mdlrest:#app_tag",
@@ -22,8 +22,8 @@
       "path": "/hello",
       "portIndex": 0,
       "gracePeriodSeconds": 300,
-      "intervalSeconds": 60,
-      "timeoutSeconds": 20,
+      "intervalSeconds": 10,
+      "timeoutSeconds": 2,
       "maxConsecutiveFailures": 3
     }
   ],
