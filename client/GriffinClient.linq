@@ -2,16 +2,17 @@
 
 void Main()
 {
-    var client = new GriffinClient("myapp-group");
-	
-	// Start new application
-    client.Stop();
+    var client = new GriffinClient("mdlrest");
+//    var client = new GriffinClient("myapp-group");
+
+//    client.Stop();
 //    System.Threading.Thread.Sleep(1000);
-//    client.Start("1");
-	
-	// Update the application
-//    client.Upgrade("2");
-//    client.Upgrade("bad");
+
+    client.Start("latest"); // mdlrest:latest
+
+//    client.Start("1");     //myapp:1
+//    client.Upgrade("2");   //myapp:2
+//    client.Upgrade("bad"); //myapp:bad
 }
 
 // Define other methods and classes here
@@ -27,17 +28,17 @@ class GriffinClient
     {
         this.app = app;
     }
-    
-	public void Start(string ver)
-	{
-		this.Start(ver, false);
-	}
-	
-	public void Upgrade(string ver)
-	{
-		this.Start(ver, true);
-	}
-	
+
+    public void Start(string ver)
+    {
+        this.Start(ver, false);
+    }
+
+    public void Upgrade(string ver)
+    {
+        this.Start(ver, true);
+    }
+
     public void Stop()
     {
         string url = Griffin_Server_URL + "stop/" + app + "?force=true";
