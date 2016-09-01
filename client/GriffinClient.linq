@@ -5,14 +5,15 @@ void Main()
     var client = new GriffinClient("mdlrest");
 //    var client = new GriffinClient("myapp-group");
 
-//    client.Stop();
-//    System.Threading.Thread.Sleep(1000);
+    client.Stop();
+    System.Threading.Thread.Sleep(1000);
 
-    client.Start("latest"); // mdlrest:latest
+    client.Start("latest", 5); // mdlrest:latest
 
-//    client.Start("1");     //myapp:1
-//    client.Upgrade("2");   //myapp:2
-//    client.Upgrade("bad"); //myapp:bad
+//    client.Start("1", 2);     //myapp:1
+//    client.Upgrade("2", 2);   //myapp:2
+//    client.Upgrade("2", 4);   //myapp:2
+//    client.Upgrade("bad", 4); //myapp:bad
 }
 
 // Define other methods and classes here
@@ -29,14 +30,14 @@ class GriffinClient
         this.app = app;
     }
 
-    public void Start(string ver)
+    public void Start(string ver, int scale)
     {
-        this.Start(ver, false);
+        this.Start(ver, scale, false);
     }
 
-    public void Upgrade(string ver)
+    public void Upgrade(string ver, int scale)
     {
-        this.Start(ver, true);
+        this.Start(ver, scale, true);
     }
 
     public void Stop()
@@ -46,9 +47,9 @@ class GriffinClient
         GriffinClient.TryMakeRequest(url, POST, out response);
     }
     
-    private void Start(string ver, bool upgrade)
+    private void Start(string ver, int scale, bool upgrade)
     {
-        string url = Griffin_Server_URL + "start/" + app + "/" + ver;
+        string url = Griffin_Server_URL + "start/" + app + "/" + ver + "/" + scale;
         string response;
         GriffinClient.TryMakeRequest(url, upgrade ? PUT : POST, out response);
     }
